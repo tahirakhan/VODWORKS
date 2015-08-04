@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Assets from VODWORKS</h1>
+
+    <h:form id="form">
+        <p:dataTable value="#{tableBean.assetsList}" var="asset" type="ordered" rows="10" paginator="true" >
+
+            <p:column headerText="Head Line">
+                <h:outputText value="#{asset.headline}" />
+            </p:column>
+            <p:column headerText="Year">
+                <h:outputText value="#{asset.year}" />
+            </p:column>
+            <p:column headerText="Ratting">
+                <h:outputText value="#{asset.rating}" />
+            </p:column>
+            <p:column headerText="Cast">
+                <p:dataList value="#{asset.cast}" var="cast" type="ordered">
+                    <f:facet name="header">
+                        Basic
+                    </f:facet>
+                    #{cast.name}
+                </p:dataList>
+
+            </p:column>
+            <p:column headerText="Directors">
+                <p:dataList value="#{asset.directors}" var="directors" type="ordered">
+                    <f:facet name="header">
+                        Basic
+                    </f:facet>
+                    #{directors.name}
+                </p:dataList>
+            </p:column>
+
+            <p:column headerText="Duration">
+                <h:outputText value="#{asset.duration}" />
+            </p:column>
+            <p:column headerText="Quote">
+                <h:outputText value="#{asset.quote}" />
+            </p:column>
+
+            <p:column headerText="Images">
+
+                <p:contentFlow value="#{asset.cardImages}" var="image">
+                    <p:graphicImage name="#{image.url}" styleClass="content" />
+                    <div class="caption">Card Image</div>
+                </p:contentFlow>
+
+
+            </p:column>
+        </p:dataTable>
+	</h:form>
+
+</h:body>
+</html>
